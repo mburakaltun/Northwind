@@ -1,6 +1,10 @@
 package mburakaltun.Northwind.business.concretes;
 
 import mburakaltun.Northwind.business.abstracts.ProductService;
+import mburakaltun.Northwind.core.utilities.results.DataResult;
+import mburakaltun.Northwind.core.utilities.results.Result;
+import mburakaltun.Northwind.core.utilities.results.SuccessDataResult;
+import mburakaltun.Northwind.core.utilities.results.SuccessResult;
 import mburakaltun.Northwind.dataAccess.abstracts.ProductDao;
 import mburakaltun.Northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,14 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public List<Product> getAll() {
-        return productDao.findAll();
+    public DataResult<List<Product>> getAll() {
+        return new SuccessDataResult<List<Product>>(productDao.findAll(), "Products listed.");
     }
+
+    @Override
+    public Result add(Product product) {
+        this.productDao.save(product);
+        return new SuccessResult("Product added");
+    }
+
 }
