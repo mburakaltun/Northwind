@@ -3,6 +3,7 @@ package mburakaltun.Northwind.api.controllers;
 import mburakaltun.Northwind.business.abstracts.ProductService;
 import mburakaltun.Northwind.core.utilities.results.DataResult;
 import mburakaltun.Northwind.core.utilities.results.Result;
+import mburakaltun.Northwind.entities.DTOs.ProductWithCategoryDTO;
 import mburakaltun.Northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-public class ProductController {
+public class ProductsController {
 
     private ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductsController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -73,5 +74,10 @@ public class ProductController {
     @GetMapping("/getByNameAndCategory")
     public DataResult<List<Product>> getByNameAndCategory(@RequestParam String productName, @RequestParam int categoryId) {
         return productService.getByNameAndCategory(productName, categoryId);
+    }
+
+    @GetMapping("/getProductWithCategoryDetails")
+    DataResult<List<ProductWithCategoryDTO>> getProductWithCategoryDetails() {
+        return productService.getProductWithCategoryDetails();
     }
 }

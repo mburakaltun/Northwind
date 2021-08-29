@@ -5,7 +5,7 @@ public class ErrorDataResult<T> extends DataResult<T> {
         super(data, false);
     }
 
-    public ErrorDataResult(String message, T data) {
+    public ErrorDataResult(T data, String message) {
         super(data, false, message);
     }
 

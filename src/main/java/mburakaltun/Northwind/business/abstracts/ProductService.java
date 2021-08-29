@@ -2,6 +2,7 @@ package mburakaltun.Northwind.business.abstracts;
 
 import mburakaltun.Northwind.core.utilities.results.DataResult;
 import mburakaltun.Northwind.core.utilities.results.Result;
+import mburakaltun.Northwind.entities.DTOs.ProductWithCategoryDTO;
 import mburakaltun.Northwind.entities.concretes.Product;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,4 +20,5 @@ public interface ProductService {
     DataResult<List<Product>> getByProductNameContains(String productName);
     DataResult<List<Product>> getByProductNameStartsWith(String productName);
     DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
+    DataResult<List<ProductWithCategoryDTO>> getProductWithCategoryDetails();
 }

@@ -6,6 +6,7 @@ import mburakaltun.Northwind.core.utilities.results.Result;
 import mburakaltun.Northwind.core.utilities.results.SuccessDataResult;
 import mburakaltun.Northwind.core.utilities.results.SuccessResult;
 import mburakaltun.Northwind.dataAccess.abstracts.ProductDao;
+import mburakaltun.Northwind.entities.DTOs.ProductWithCategoryDTO;
 import mburakaltun.Northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -80,5 +81,10 @@ public class ProductManager implements ProductService {
 
     public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
         return new SuccessDataResult<>(productDao.getByNameAndCategory_CategoryId(productName, categoryId));
+    }
+
+    @Override
+    public DataResult<List<ProductWithCategoryDTO>> getProductWithCategoryDetails() {
+        return new SuccessDataResult<>(productDao.getProductWithCategoryDetails());
     }
 }
